@@ -23,7 +23,6 @@ final class AddressExtensionTest extends TestCase
         $reflection = new ReflectionClass($this->addressExtension);
 
         $this->regions = $reflection->getProperty('regions')->getValue($this->addressExtension);
-        $this->states = $reflection->getProperty('states')->getValue($this->addressExtension);
         $this->cityNames = $reflection->getProperty('cityNames')->getValue($this->addressExtension);
         $this->streetNames = $reflection->getProperty('streetNames')->getValue($this->addressExtension);
         $this->streetSuffixes = $reflection->getProperty('streetSuffixes')->getValue($this->addressExtension);
@@ -36,21 +35,8 @@ final class AddressExtensionTest extends TestCase
             $results[] = $this->faker->unique()->region();
         }
 
-        $this->assertEqualsCanonicalizing(
-            $this->regions,
-            $results
-        );
-    }
-
-    public function testState(): void
-    {
-        $results = [];
-        for ($i = 0; $i < count($this->states); $i++) {
-            $results[] = $this->faker->unique()->state();
-        }
-
         $this->assertEquals(
-            sort($this->states),
+            sort($this->regions),
             sort($results)
         );
     }

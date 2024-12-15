@@ -6,15 +6,11 @@ use Xefi\Faker\Extensions\Extension;
 
 class AddressExtension extends Extension
 {
-    protected $states = [
+    protected $regions = [
         ['BW' => 'Baden-Württemberg'], ['BY' => 'Bayern'], ['BE' => 'Berlin'], ['BB' => 'Brandenburg'],
         ['HB' => 'Bremen'], ['HH' => 'Hamburg'], ['HE' => 'Hessen'], ['MV' => 'Mecklenburg-Vorpommern'],
         ['NI' => 'Niedersachsen'], ['NW' => 'Nordrhein-Westfalen'], ['RP' => 'Rheinland-Pfalz'], ['SL' => 'Saarland'],
         ['SN' => 'Sachsen'], ['ST' => 'Sachsen-Anhalt'], ['SH' => 'Schleswig-Holstein'], ['TH' => 'Thüringen'],
-    ];
-
-    protected $regions = [
-        'North', 'East', 'South', 'West',
     ];
 
     protected $streetSuffixes = [
@@ -34,14 +30,9 @@ class AddressExtension extends Extension
         'Karlsruhe', 'Münster', 'Wiesbaden', 'Augsburg', 'Gelsenkirchen', 'Mönchengladbach', 'Braunschweig', 'Chemnitz', 'Kiel', 'Aachen'
     ];
 
-    public function region(): string
+    public function region(): array
     {
         return $this->pickArrayRandomElement($this->regions);
-    }
-
-    public function state(): array
-    {
-        return $this->pickArrayRandomElement($this->states);
     }
 
     public function city(): string
@@ -74,8 +65,8 @@ class AddressExtension extends Extension
         $street = $this->streetAddress();
         $zipCode = $this->zipCode();
         $city = $this->city();
-        $state = $this->state();
+        $region = $this->region();
 
-        return sprintf('%s, %05d %s, %s', $street, $zipCode, $city, reset($state));
+        return sprintf('%s, %05d %s, %s', $street, $zipCode, $city, reset($region));
     }
 }
