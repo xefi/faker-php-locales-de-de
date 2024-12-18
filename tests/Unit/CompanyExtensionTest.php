@@ -2,11 +2,23 @@
 
 namespace Xefi\Faker\DeDe\Tests\Unit;
 
+use Random\Randomizer;
 use Xefi\Faker\Calculators\Luhn;
 use Xefi\Faker\Container\Container;
+use Xefi\Faker\DeDe\Extensions\CompanyExtension;
 
 final class CompanyExtensionTest extends TestCase
 {
+    protected array $companies = [];
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $companyExtension = new CompanyExtension(new Randomizer());
+        $this->companies = (new \ReflectionClass($companyExtension))->getProperty('companies')->getValue($companyExtension);
+    }
+
     public function testUstIdNr()
     {
         $results = [];
@@ -34,5 +46,18 @@ final class CompanyExtensionTest extends TestCase
             $this->assertEquals('HRB', $prefix);
             $this->assertEquals(5, strlen($suffix));
         }
+    }
+
+    public function testCompany()
+    {
+        $results = [];
+        for ($i = 0; $i < count($this->companies); $i++) {
+            $results[] = $this->faker->unique()->company();
+        }
+
+        $this->assertEqualsCanonicalizing(
+            $this->companies,
+            $results
+        );
     }
 }

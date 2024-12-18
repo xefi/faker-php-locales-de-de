@@ -7,6 +7,19 @@ use Xefi\Faker\Extensions\Extension;
 
 class CompanyExtension extends Extension
 {
+    private array $companies = [
+        "Kronberg Industries", "Schneider & Sohn GmbH", "Bergmann Technologies",
+        "Falkenstein Systems", "Hohenberg Gruppe", "Lindholm Logistik",
+        "Weisswald Solutions", "Schwarz & Braun AG", "MeisterWerk Engineering",
+        "Eisbach Automationen", "VogelTech GmbH", "Steinbruch Energie",
+        "Kühnemann Fabrik", "Brandenburg Dynamics", "Hartmann Stahlwerke",
+        "Goldmann Vertriebsnetz", "Löwenkraft Ventures", "Neuschwan Innovations",
+        "Waldorf Maschinenbau", "Fischer & Söhne KG", "Dornburg Elektrotechnik",
+        "Ziegelmann Bau AG", "Adlerflug Aviation", "Blumenfeld Pharma",
+        "Grünwald Energie", "Thalberg Digital", "Breitenbach Logistik",
+        "Rheinwerke Systems", "Silberstrom GmbH", "Schlossberg Solutions"
+    ];
+
     public function ustIdNr(): string
     {
         $prefix = 'DE';
@@ -21,5 +34,10 @@ class CompanyExtension extends Extension
         $suffix = $this->randomizer->getBytesFromString(implode(range(0, 9)), 5);
 
         return $prefix . ' ' . $suffix;
+    }
+
+    public function company(): string
+    {
+        return $this->pickArrayRandomElement($this->companies);
     }
 }
