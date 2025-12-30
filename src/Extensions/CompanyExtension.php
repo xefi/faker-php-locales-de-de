@@ -7,6 +7,11 @@ use Xefi\Faker\Extensions\Extension;
 
 class CompanyExtension extends Extension
 {
+    public function getLocale(): string|null
+    {
+        return 'de_DE';
+    }
+
     private array $companies = [
         "Kronberg Industries", "Schneider & Sohn GmbH", "Bergmann Technologies",
         "Falkenstein Systems", "Hohenberg Gruppe", "Lindholm Logistik",
