@@ -7,6 +7,7 @@ use Xefi\Faker\DeDe\Extensions\ColorsExtension;
 use Xefi\Faker\DeDe\Extensions\CompanyExtension;
 use Xefi\Faker\DeDe\Extensions\FinancialExtension;
 use Xefi\Faker\DeDe\Extensions\PersonExtension;
+use Xefi\Faker\DeDe\Extensions\PhoneExtension;
 use Xefi\Faker\DeDe\Extensions\TextExtension;
 use Xefi\Faker\Providers\Provider;
 
@@ -21,6 +22,7 @@ class FakerDeDeServiceProvider extends Provider
             PersonExtension::class,
             ColorsExtension::class,
             TextExtension::class,
+            PhoneExtension::class,
         ]);
     }
 }
