@@ -19,10 +19,9 @@ class FinancialExtension extends BaseFinancialExtension
 
         if ($format === null) {
             $format = sprintf(
-                '%s%s%s',
-                str_repeat('{d}', 2),
-                str_repeat('{d}', 8),
-                str_repeat('{d}', 10)
+                '%s%s',
+                str_repeat('{d}', 8),  // Bank code (BLZ)
+                str_repeat('{d}', 10)  // Account number
             );
         }
 

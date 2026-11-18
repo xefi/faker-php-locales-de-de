@@ -10,7 +10,7 @@ final class FinancialExtensionTest extends TestCase
     {
         $iban = $this->faker->iban();
 
-        $this->assertEquals(24, strlen($iban));
+        $this->assertMatchesRegularExpression('/^DE\d{20}$/', $iban);
         $this->assertStringStartsWith('DE', $iban);
         $this->assertTrue(Iban::isValid($iban));
     }
